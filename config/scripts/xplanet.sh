@@ -5,23 +5,23 @@ CMDRESPONSE=1
 TM="Totalmarker.pl"
 
 if [[ $SWITCH != 'install' ]]; then
-    source /Users/$USER/.xplanet/config/xp.def
+    source /Users/$USER/Xplanet2/config/xp.def
 fi
 
 case "$SWITCH" in
     install)
         echo "Installing Xplanet"
-        brew tap blogabe/xplanet
-        brew install -s --HEAD blogabe/xplanet/xplanet --without-giflib --with-cspice
+        brew tap matthewc100/Xplanet2
+        brew install -s matthewc100/xplanet2/xplanet --without-giflib --with-cspice
         if [ ! $? -eq 0 ]; then
             echo "ERROR... Problem with Xplanet build. Exiting."
             exit 1
         fi
         echo "Point to Xplanet binary"
-        sed -i '' "s#XPLANET_BIN=#XPLANET_BIN=$(/usr/bin/which xplanet)#" ~/.xplanet/config/xp.def
+        sed -i '' "s#XPLANET_BIN=#XPLANET_BIN=$(/usr/bin/which xplanet)#" ~/Xplanet2/config/xp.def
         if [ ! $? -eq 0 ]; then
             echo "################################################################################"
-            echo "WARNING... Double check XPLANET_BIN is set correctly in file ~/.xplanet/config/xp.def"
+            echo "WARNING... Double check XPLANET_BIN is set correctly in file ~/Xplanet2/config/xp.def"
             echo "################################################################################"
         fi
         echo "################################################################################"
